@@ -9,11 +9,6 @@ public function changeAssetAuthorWithEntry(ModelEvent $e)
         return;
     }
 
-    $authorHasChanged = in_array('authorId', $e->sender->getDirtyAttributes());
-    if (!$authorHasChanged) {
-        return;
-    }
-
     $affectedAssets = Asset::find()->relatedTo([
         'sourceElement' => $e->sender->id,
         'field' => ['user_image', 'user_logo', 'user_files'],
