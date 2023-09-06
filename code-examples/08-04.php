@@ -7,7 +7,7 @@ public function ensureDefaultDashboardWidgets(User $user): void
 {
     $existingWidgets = Craft::$app->dashboard->getAllWidgets();
     foreach ($existingWidgets as $widget) {
-        $dashboard->deleteWidget($widget);
+        Craft::$app->dashboard->deleteWidget($widget);
     }
 
     $defaultWidgets = [
@@ -25,9 +25,6 @@ public function ensureDefaultDashboardWidgets(User $user): void
     ];
 
     foreach ($defaultWidgets as $widget) {
-        $dashboard->saveWidget($widget);
-        if ($widget->colspan) {
-            $dashboard->changeWidgetColspan($widget->id, $widget->colspan);
-        }
+        Craft::$app->dashboard->saveWidget($widget);
     }
 }
