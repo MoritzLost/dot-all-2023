@@ -9,7 +9,7 @@ public function normalizeValue(mixed $value): string
         $value = implode(PHP_EOL, array_map($this->normalizeValue(...), $value));
     }
     if (is_bool($value)) {
-        $value = $value ? Craft::t('app', 'Yes') : Craft::t('app', 'No');
+        $value = Craft::t('app', $value ? 'Yes' : 'No');
     }
     if ($value instanceof DateTime) {
         $value = Craft::$app->getFormatter()->asDatetime($value, 'medium');
